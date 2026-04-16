@@ -1,0 +1,59 @@
+{
+    "author": "Discountdeadcats",
+    "dependencies": {},
+    "keywords": [
+        "pebble-app"
+    ],
+    "name": "dune-minimalist",
+    "pebble": {
+        "displayName": "dune minimalist ",
+        "enableMultiJS": true,
+        "messageKeys": [],
+        "projectType": "native",
+        "resources": {
+            "media": [
+                {
+                    "characterRegex": "[0-9:.]",
+                    "file": "fonts/DUNE_FONT_56.ttf",
+                    "name": "DUNE_FONT_56",
+                    "targetPlatforms": null,
+                    "type": "font"
+                },
+                {
+                    "file": "fonts/DUNE_FONT_24.ttf",
+                    "name": "DUNE_FONT_24",
+                    "targetPlatforms": null,
+                    "type": "font"
+                },
+                {
+                    "file": "images/IMAGE_BT_ICON",
+                    "name": "IMAGE_BT_ICON",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/DUNE_Immage",
+                    "menuIcon": true,
+                    "name": "DUNE_ikmge",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                }
+            ]
+        },
+        "sdkVersion": "3",
+        "targetPlatforms": [
+            "aplite",
+            "basalt",
+            "chalk",
+            "diorite",
+            "emery",
+            "gabbro",
+            "flint"
+        ],
+        "uuid": "ef8a26fb-c2fe-441b-bda0-0376ba958d5e",
+        "watchapp": {
+            "watchface": true
+        }
+    },
+    "version": "1.0.0"
+}
