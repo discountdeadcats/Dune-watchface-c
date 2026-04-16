@@ -20,16 +20,26 @@ static void update_time(void) {
     struct tm *tick_time = localtime(&temp);
 
     static char s_time_buffer[8];
-    strftime(s_time_buffer, sizeof(s_time_buffer),
-             clock_is_24h_style() ? "%H:%M" : "%I:%M",
-             tick_time);
+
+    if(clock_is_24h_style()) {
+        // 24-hour format
+        strftime(s_time_buffer, sizeof(s_time_buffer), "%H:%M", tick_time);
+    } else {
+        // 12-hour format
+        strftime(s_time_buffer, sizeof(s_time_buffer), "%I:%M", tick_time);
+
+        // Remove leading zero (e.g., "09:15" -> "9:15")
+        if(s_time_buffer[0] == '0') {
+            memmove(s_time_buffer, &s_time_buffer[1], sizeof(s_time_buffer) - 1);
+        }
+    }
+
     text_layer_set_text(s_time_layer, s_time_buffer);
 
     static char s_date_buffer[16];
     strftime(s_date_buffer, sizeof(s_date_buffer), "%a %b %d", tick_time);
     text_layer_set_text(s_date_layer, s_date_buffer);
 }
-
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
     (void)tick_time;
     (void)units_changed;
