@@ -1,4 +1,6 @@
 #include <pebble.h>
+#include <ctype.h>
+
 
 static Window *s_main_window;
 static TextLayer *s_time_layer;
@@ -37,14 +39,20 @@ static void update_time(void) {
     text_layer_set_text(s_time_layer, s_time_buffer);
 
     static char s_date_buffer[16];
-    strftime(s_date_buffer, sizeof(s_date_buffer), "%a %b %d", tick_time);
-    text_layer_set_text(s_date_layer, s_date_buffer);
+strftime(s_date_buffer, sizeof(s_date_buffer), "%a %b %d", tick_time);
+
+// Convert to uppercase
+  for (int i = 0; s_date_buffer[i]; i++) {
+    s_date_buffer[i] = toupper((unsigned char)s_date_buffer[i]);
+  }
+
+  text_layer_set_text(s_date_layer, s_date_buffer);
 }
-static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
+  static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
     (void)tick_time;
     (void)units_changed;
     update_time();
-}
+  }
 
 // -------------------------------------------------------
 // Battery
@@ -144,7 +152,7 @@ static void bluetooth_callback(bool connected) {
     }
 }
 
-// -------------------------------------------------------
+// -------------------------------------------------------fcc
 // Layout
 // -------------------------------------------------------
 static void main_window_load(Window *window) {
@@ -152,8 +160,8 @@ static void main_window_load(Window *window) {
     GRect bounds = layer_get_bounds(window_layer);
 
     // Load custom fonts
-    s_time_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_DUNE_FONT_56));
-    s_date_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_DUNE_FONT_24));
+    s_time_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_DUNE_FONT_45));
+    s_date_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_DUNE_FONT_16));
 
     int margin_x = (bounds.size.w >= 180) ? 16 : 10;
     int worm_layer_h = 20;
@@ -198,7 +206,7 @@ static void main_window_load(Window *window) {
     s_bt_icon_layer = bitmap_layer_create(
         GRect((bounds.size.w - 30) / 2, bt_y, 30, bt_icon_h));
     bitmap_layer_set_bitmap(s_bt_icon_layer, s_bt_icon_bitmap);
-    bitmap_layer_set_compositing_mode(s_bt_icon_layer, GCompOpSet);
+  bitmap_layer_set_compositing_mode(s_bt_icon_layer, GCompOpAssign);
 
     // Add layers
     layer_add_child(window_layer, text_layer_get_layer(s_time_layer));

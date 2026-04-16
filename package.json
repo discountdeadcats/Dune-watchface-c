@@ -13,15 +13,24 @@
         "resources": {
             "media": [
                 {
-                    "characterRegex": "[0-9:.]",
-                    "file": "fonts/DUNE_FONT_56.ttf",
-                    "name": "DUNE_FONT_56",
-                    "targetPlatforms": null,
+                    "characterRegex": "[0-9:A-Z ]",
+                    "file": "fonts/DUNE_FONT_16.ttf",
+                    "name": "DUNE_FONT_16",
+                    "targetPlatforms": [
+                        "aplite",
+                        "basalt",
+                        "chalk",
+                        "diorite",
+                        "emery",
+                        "gabbro",
+                        "flint"
+                    ],
                     "type": "font"
                 },
                 {
-                    "file": "fonts/DUNE_FONT_24.ttf",
-                    "name": "DUNE_FONT_24",
+                    "characterRegex": "[0-9:]",
+                    "file": "fonts/DUNE_FONT_45.ttf",
+                    "name": "DUNE_FONT_45",
                     "targetPlatforms": null,
                     "type": "font"
                 },
